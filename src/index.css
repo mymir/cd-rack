@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.site-logo:hover {
+  cursor: pointer;
+}
+
+/* .header-bar {
+  padding: 0px 100px;
+  background-color: rgb(0 0 0 / 0%);
+} */
