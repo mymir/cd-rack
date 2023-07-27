@@ -49,7 +49,7 @@ const SearchBar = () => {
   return (
 <Search 
   sx={{
-  display: { xs: 'none', md: 'block' },
+    display: { xs: 'none', sm: 'block' },
   }}
 >
   <SearchIconWrapper>

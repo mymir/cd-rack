@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
 import { navItems } from './NavItems';
 import SearchBar from '../components/SearchBar';
@@ -19,7 +19,6 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
 const Header = () => {
-    const navigate = useNavigate();
     const location = useLocation().pathname;
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -32,39 +31,52 @@ const Header = () => {
         setAnchorElNav(null);
     };
 
-    const handleRouteAndCloseNavMenu = (route) => {
-        setAnchorElNav(null);
-        navigate(route);
-    };
-
     const navColor = () => {
         if (location === '/home') {
-            return 'secondary'
+            return 'transparent'
         } else {
             return 'primary'
         }
     }
 
     return (
-        <AppBar position="fixed" component="nav" className="header-bar" color={navColor()} sx={{ boxShadow: 'none'}}>
+        <AppBar 
+            position="fixed" 
+            component="nav" 
+            color={navColor()}
+            sx={{ 
+                boxShadow: 'none', 
+                backgroundImage: 'linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0))',
+                px: 10,
+                py: 0.5
+            }}
+        >
             <CssBaseline />
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex' } }}>
-                        <AdbIcon className="site-logo" sx={{ display: { xs: 'none', md: 'block' }, mr: 1 }} onClick={() => navigate('/home')}/>
+                        <IconButton 
+                            aria-label="site-logo" 
+                            size="large"
+                            color="inherit"
+                            sx={{ display: { xs: 'none', sm: 'flex' }, mr: 1 }} component={RouterLink} to='/home'
+                        >
+                            <AdbIcon/>
+                        </IconButton>
                         <Typography 
                             variant="h6" 
                             noWrap
                             component="a"       
                             sx={{
                                 mr: 2,
-                                display: { xs: 'none', md: 'block' },
+                                display: { xs: 'none', sm: 'flex' },
+                                alignSelf: 'center'
                             }}
                         >
                             LOGO
                         </Typography>
                     </Box>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'none' } }}>
                         <IconButton
                             size="large"
                             aria-label="nav aria"
@@ -73,7 +85,7 @@ const Header = () => {
                             onClick={handleOpenNavMenu}
                             color="inherit"
                         >
-                        <MenuIcon />
+                            <MenuIcon />
                         </IconButton>
                         <Menu
                             id="menu-appbar"
@@ -90,24 +102,32 @@ const Header = () => {
                             open={Boolean(anchorElNav)}
                             onClose={handleCloseNavMenu}
                             sx={{
-                                display: { xs: 'block', md: 'none' },
+                                display: { xs: 'block', sm: 'none' },
                             }}
                         >
                         {navItems.map((item) => (
-                            <MenuItem key={item.id} onClick={() => handleRouteAndCloseNavMenu(item.route)}>
+                            <MenuItem key={item.id} component={RouterLink} to={item.route} onClick={handleCloseNavMenu}>
                             <Typography textAlign="center">{item.label}</Typography>
                             </MenuItem>
                         ))}
                         </Menu>
                     </Box>
-                    <AdbIcon className="site-logo" sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} onClick={() => navigate('/home')}/>
+                    <IconButton 
+                        aria-label="site-logo"
+                        color="inherit"
+                        sx={{ display: { xs: 'block', sm: 'none' }, mr: 1 }} 
+                        component={RouterLink} to='/home'
+                        size="large"
+                    >
+                        <AdbIcon/>
+                    </IconButton>
                     <Typography 
                         variant="h6" 
                         noWrap
                         component="a"       
                         sx={{
                             mr: 2,
-                            display: { xs: 'flex', md: 'none' },
+                            display: { xs: 'block', sm: 'none' },
                             flexGrow: 1,
                         }}>
                         LOGO
@@ -120,7 +140,8 @@ const Header = () => {
                                 return (
                                     <Button
                                         key={item.id}
-                                        onClick={() => handleRouteAndCloseNavMenu(item.route)}
+                                        component={RouterLink}
+                                        to={item.route}
                                         sx={{ color: 'text.primary', fontWeight: 'bold' }}
                                     >
                                         {item.label}
@@ -130,7 +151,8 @@ const Header = () => {
                                 return (
                                     <Button
                                         key={item.id}
-                                        onClick={() => handleRouteAndCloseNavMenu(item.route)}
+                                        component={RouterLink}
+                                        to={item.route}
                                         sx={{ color: 'text.secondary' }}
                                     >
                                         {item.label}

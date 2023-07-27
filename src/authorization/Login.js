@@ -1,17 +1,42 @@
-import Box from '@mui/material/Box';
+import * as React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
+
+
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import Toolbar from '@mui/material/Toolbar';
+import CardContainer from '../components/CardContainer';
+import LoginForm from './LoginForm';
 
 const Login = () => {
     return (
-    <Box
-        sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
+    <Container
+        sx={{
+            marginTop: 8,
+            width: '50%',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
     >
-      <Toolbar />
-      <Typography variant="h5">
-          LOGIN
-      </Typography> 
-    </Box>
+        <Typography component="h1" variant="h5">
+            Login
+        </Typography>
+        <CardContainer children={<LoginForm />} />
+          <Grid container>
+              <Grid item xs>
+                <Link component={RouterLink} to="/home" variant="body2" color="text.secondary">
+                  Forgot your password?
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link component={RouterLink} to="/signup" variant="body2" color="text.secondary">
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
+            </Grid>
+        </Container>
     );
     
   };
