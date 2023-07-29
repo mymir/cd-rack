@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
-import Link from '@mui/material/Link';
+import Popover from '@mui/material/Popover';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
@@ -8,13 +9,33 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import TermDialog from './TermDialog';
 
 const SignUpForm = () => {
+    const [agreed, setAgreed] = useState(false);
+    const [anchorEl, setAnchorEl] = useState(null);
+
     const navigate = useNavigate();
+
+    const handlePopoverOpen = (event) => {
+        if (!agreed) {
+            setAnchorEl(event.currentTarget);
+        }        
+      };
+    
+      const handlePopoverClose = () => {
+        setAnchorEl(null);
+      };
+
+    const handleAgree = (isAgreed) => {
+        setAgreed(isAgreed);
+      };
 
     const handleSubmit = () => {
         navigate('/home');
     };
+
+    const open = Boolean(anchorEl);
 
     return (
         <Box component="form" onSubmit={handleSubmit} noValidate>
@@ -26,8 +47,10 @@ const SignUpForm = () => {
                 label="Email"
                 name="email"
                 autoComplete="email"
+                type="email"
                 variant="filled"
-                sx={{ bgcolor: '#292929' }}
+                size="small"
+                sx={{ bgcolor: '#292929', borderRadius: '2%' }}
                 autoFocus
             />
             <TextField
@@ -39,7 +62,8 @@ const SignUpForm = () => {
                 name="username"
                 autoComplete="username"
                 variant="filled"
-                sx={{ bgcolor: '#292929' }}
+                size="small"
+                sx={{ bgcolor: '#292929', borderRadius: '2%' }}
             />
             <TextField
                 margin="normal"
@@ -51,7 +75,8 @@ const SignUpForm = () => {
                 id="password"
                 autoComplete="current-password"
                 variant="filled"
-                sx={{ bgcolor: '#292929' }}
+                size="small"
+                sx={{ bgcolor: '#292929', borderRadius: '2%' }}
             />
             
             <Grid  
@@ -61,20 +86,43 @@ const SignUpForm = () => {
             >
               <Grid item xs={1}>
                 <FormControlLabel
-                    control={<Checkbox value="remember" color="default" />}
+                    control={<Checkbox value="agree" />}
                     color="text.secondary"
-                    // label="I accept the Terms Of Use"
+                    disabled={!agreed}
+                    checked={agreed}
+                    onMouseEnter={handlePopoverOpen}
+                    onMouseLeave={handlePopoverClose}
                 />
+                <Popover
+                    id="mouse-over-popover"
+                    sx={{
+                    pointerEvents: 'none',
+                    }}
+                    open={open}
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                    }}
+                    transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                    }}
+                    onClose={handlePopoverClose}
+                    disableRestoreFocus
+                >
+                    <Typography sx={{ p: 1 }}>Please read terms before agreeing.</Typography>
+                </Popover>
               </Grid>
               <Grid sx={{ textAlign: 'left' }} item xs={10}>
-                <Typography variant='body1' sx={{ color: 'text.secondary' }}>I accept the <Link href="" underline="hover" sx={{ color: 'text.primary' }}>Terms Of Use</Link></Typography>
+                <TermDialog handleAgree={handleAgree}></TermDialog>
               </Grid>
             </Grid>
             <Button
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2, color: '#abc2ae', bgcolor: '#292929' }}
+                sx={{ mt: 3, mb: 2 }}
             >
                 Sign Up
             </Button>
