@@ -2,34 +2,22 @@ import * as React from 'react';
 import { useLocation } from 'react-router-dom';
 import { Link as RouterLink } from 'react-router-dom';
 
-import { navItems } from './NavItems';
+import { navItems } from '../nav/HeaderItems';
 import SearchBar from '../components/SearchBar';
+import HeaderMenu from './HeaderMenu';
 
-import AdbIcon from '@mui/icons-material/Adb';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import CssBaseline from '@mui/material/CssBaseline';
 import IconButton from '@mui/material/IconButton';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
+import SiteLogo from '../components/SiteLogo';
 
 const Header = () => {
     const location = useLocation().pathname;
-
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
-
-    const handleOpenNavMenu = (event) => {
-        setAnchorElNav(event.currentTarget);
-    };
-
-    const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
-    };
 
     const navColor = () => {
         if (location === '/home') {
@@ -39,101 +27,36 @@ const Header = () => {
         }
     }
 
+    const navPosition = () => {
+        if (location === '/home') {
+            return 'absolute'
+        } else {
+            return 'static'
+        }
+    }
+
     return (
         <AppBar 
-            position="fixed" 
-            component="nav" 
+            position={navPosition()}
+            component='nav'
             color={navColor()}
             sx={{ 
-                boxShadow: 'none', 
-                backgroundImage: 'linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0))',
+                backgroundImage: 'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.2))',
+                boxShadow: 'none',
                 px: 10,
                 py: 0.5
             }}
         >
-            <CssBaseline />
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex' } }}>
-                        <IconButton 
-                            aria-label="site-logo" 
-                            size="large"
-                            color="inherit"
-                            sx={{ display: { xs: 'none', sm: 'flex' }, mr: 1 }} component={RouterLink} to='/home'
-                        >
-                            <AdbIcon/>
-                        </IconButton>
-                        <Typography 
-                            variant="h6" 
-                            noWrap
-                            component="a"       
-                            sx={{
-                                mr: 2,
-                                display: { xs: 'none', sm: 'flex' },
-                                alignSelf: 'center'
-                            }}
-                        >
-                            LOGO
-                        </Typography>
+                    <HeaderMenu />
+                    <Box sx={{ flexGrow: 1, display: { sm: 'flex', md: 'none' } }}>
+                        <SiteLogo />
                     </Box>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'none' } }}>
-                        <IconButton
-                            size="large"
-                            aria-label="nav aria"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            onClick={handleOpenNavMenu}
-                            color="inherit"
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <Menu
-                            id="menu-appbar"
-                            anchorEl={anchorElNav}
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'left',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'left',
-                            }}
-                            open={Boolean(anchorElNav)}
-                            onClose={handleCloseNavMenu}
-                            sx={{
-                                display: { xs: 'block', sm: 'none' },
-                            }}
-                        >
-                        {navItems.map((item) => (
-                            <MenuItem key={item.id} component={RouterLink} to={item.route} onClick={handleCloseNavMenu}>
-                            <Typography textAlign="center">{item.label}</Typography>
-                            </MenuItem>
-                        ))}
-                        </Menu>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'none', md: 'flex' }}}>
+                        <SiteLogo />
                     </Box>
-                    <IconButton 
-                        aria-label="site-logo"
-                        color="inherit"
-                        sx={{ display: { xs: 'block', sm: 'none' }, mr: 1 }} 
-                        component={RouterLink} to='/home'
-                        size="large"
-                    >
-                        <AdbIcon/>
-                    </IconButton>
-                    <Typography 
-                        variant="h6" 
-                        noWrap
-                        component="a"       
-                        sx={{
-                            mr: 2,
-                            display: { xs: 'block', sm: 'none' },
-                            flexGrow: 1,
-                        }}>
-                        LOGO
-                    </Typography>
-
-                    <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+                    <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }}>
                         {navItems.map((item) => 
                         {
                             if (('/' + item.route) === location) {
@@ -163,8 +86,28 @@ const Header = () => {
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
-                        <SearchBar></SearchBar>
+                        <SearchBar />
                     </Box>
+                    <IconButton 
+                        aria-label="linkedin" 
+                        color="inherit"
+                        component='a'
+                        target="_blank"
+                        href='https://www.linkedin.com/in/rafael-mymir-zingle/'
+                        sx={{ ml: 1, pr: 1 }}
+                    >
+                        <LinkedInIcon sx={{ fontSize: 'xx-large' }} />
+                    </IconButton>
+                    <IconButton 
+                        aria-label="github" 
+                        color="inherit"
+                        component='a' 
+                        href='https://github.com/mymir/cd-rack/tree/main'
+                        target="_blank"
+                        sx={{ pr: 1 }}
+                    >
+                        <GitHubIcon sx={{ fontSize: 'xx-large' }} />
+                    </IconButton>
                 </Toolbar>
             </Container>
         </AppBar>
