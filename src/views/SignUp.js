@@ -4,7 +4,7 @@ import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import CardContainer from '../components/CardContainer';
 import Container from '@mui/material/Container';
-import SignUpForm from './SignUpForm';
+import SignUpForm from '../authorization/SignUpForm';
 import SiteLogo from '../components/SiteLogo';
 import Box from '@mui/material/Box';
 
@@ -35,10 +35,9 @@ const SignUp = () => {
         }}
       />
       <Typography 
-        component="h1" 
         variant="h5" 
         alignContent="center"
-        direction="row"
+        flexDirection="row"
         justifyContent="center"
         alignItems="center"
         display="flex"

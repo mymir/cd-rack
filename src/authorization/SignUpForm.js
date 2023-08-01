@@ -111,7 +111,7 @@ const SignUpForm = () => {
                     onClose={handlePopoverClose}
                     disableRestoreFocus
                 >
-                    <Typography sx={{ p: 1 }}>Please read terms before agreeing.</Typography>
+                    <Typography sx={{ p: 1 }}>Please read terms before accepting</Typography>
                 </Popover>
               </Grid>
               <Grid sx={{ textAlign: 'left' }} item xs={10}>
