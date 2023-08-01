@@ -7,7 +7,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import CardContainer from '../components/CardContainer';
-import LoginForm from './LoginForm';
+import LoginForm from '../authorization/LoginForm';
 
 const Login = () => {
     return (
@@ -35,7 +35,7 @@ const Login = () => {
               zIndex: -1,            
           }}
         />
-        <Typography component="h1" variant="h5">
+        <Typography variant="h5">
             Login
         </Typography>
         <CardContainer children={<LoginForm />} />

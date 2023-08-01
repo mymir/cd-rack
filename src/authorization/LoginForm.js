@@ -43,7 +43,7 @@ const LoginForm = () => {
                 size="small"
                 sx={{ bgcolor: '#292929' }}
             />
-            <Link component={RouterLink} to="/home" variant="body2" color="text.secondary" sx={{display: 'flex'}}>
+            <Link component={RouterLink} to="/reset-password" variant="body2" color="text.secondary" sx={{display: 'flex'}}>
                   Forgot your password?
             </Link>
             <FormControlLabel

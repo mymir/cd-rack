@@ -3,7 +3,7 @@ export const company = [
         id: 0,
         icon: null,
         link: false,
-        label: 'COMPANY',
+        label: 'SITE',
         route: null
     },
     {

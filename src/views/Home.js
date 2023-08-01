@@ -1,7 +1,6 @@
 import { useRef } from 'react';
 
-import Footer from '../layout/Footer';
-import Landing from './Landing';
+import Landing from '../home/Landing';
 import Box from '@mui/material/Box';
 
 const Home = () => {
@@ -16,7 +15,6 @@ const Home = () => {
     <Box sx={{ width: '100%' }}>
       <Landing scrollToTarget={scrollToTarget}></Landing>
       <div ref={ref}>
-        {/* <Footer /> */}
       </div>
     </Box>
     
