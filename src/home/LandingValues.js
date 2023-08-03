@@ -5,13 +5,11 @@ import Paper from '@mui/material/Paper';
 import StarIcon from '@mui/icons-material/Star';
 import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 import CreateIcon from '@mui/icons-material/Create';
-import zIndex from '@mui/material/styles/zIndex';
 
 const LandingValues = () => {    
     return (
     <Box
         sx={{ 
-            // position: 'sticky',
             width: '100vw', 
             color: 'black',
         }}
@@ -20,7 +18,6 @@ const LandingValues = () => {
             spacing={0}
             sx={{ 
                 justifyContent: "center",
-                // position: 'static',
                 px: 15,
                 py: 14
             }}

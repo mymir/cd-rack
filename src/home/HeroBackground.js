@@ -14,7 +14,6 @@ const LandingBackground = () => {
     <Box 
         sx={{ 
             position: 'absolute',
-            display: 'flex', 
             top: 0, 
             right: 0, 
             left: 0, 
@@ -27,13 +26,11 @@ const LandingBackground = () => {
         component="div"
         sx={{
             position: 'fixed', 
-            display: 'flex',
             width: '100vw', 
             height: '100vh',
             boxShadow: '0px 0px 100px 60px rgb(0 0 0 / 20%) inset',
             backgroundImage: `url(${backgroundImageUrl})`,
             backgroundColor: '#6b4c38',
-            // opacity: 0.5,
             zIndex: -2,
             backgroundPosition: 'center',
             backgroundSize: 'cover',
@@ -44,7 +41,6 @@ const LandingBackground = () => {
         component="div"
         sx={{
             position: 'fixed', 
-            display: 'flex',
             width: '100vw', 
             height: '100vh',
             background: 'linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%), linear-gradient(127deg, rgba(252,186,3,.8), rgba(252,186,3,0) 70.71%), linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%), linear-gradient(336deg, rgba(0,0,0,1), rgba(0,0,0,1))',

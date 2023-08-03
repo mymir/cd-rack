@@ -1,6 +1,5 @@
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
 import AlbumContainer from '../components/AlbumContainer';
 
 const items = [1,2,3,4,5];
@@ -13,8 +12,7 @@ const TrendingAlbums = () => {
             position: 'static',
             width: '100vw', 
             color: 'black',
-            py: 10,
-            // pb: 14
+            py: 10
         }}
     >
         <Grid container
@@ -25,15 +23,13 @@ const TrendingAlbums = () => {
             }}
         >
             {items.map((item) => (
-                <Grid item sm={4} md={3} lg={2.1} sx={{
+                <Grid item sm={4} md={3} lg={2} sx={{
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center'
                 }}>
                     <AlbumContainer backgroundImageUrl={url} key={item}>
-                        <Typography variant='h6' sx={{position: 'absolute', fontWeight: 'bold', pointerEvents: 'none', textShadow: '2px 1px 3px #000000cf'}}>
-                            Album
-                        </Typography>
+                        Album
                     </AlbumContainer>
                 </Grid>
             ))}

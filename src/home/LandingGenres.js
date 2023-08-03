@@ -1,8 +1,7 @@
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import AlbumContainer from '../components/AlbumContainer';
-// import ImageIcon from '@mui/icons-material/Image';
+import ListContainer from '../components/ListContainer';
 import { genreItems } from '../nav/GenreItems';
 import SearchBar from '../components/SearchBar';
 
@@ -43,11 +42,9 @@ const TrendingAlbums = () => {
                     flexDirection: 'column',
                     alignItems: 'center'
                 }}>
-                    <AlbumContainer backgroundImageUrl={item.image} link={'/genres/' + item.main} key={item.main}>
-                        <Typography variant='h6' sx={{position: 'absolute', fontWeight: 'bold', pointerEvents: 'none', textShadow: '2px 1px 3px #000000cf'}}>
-                            {item.main.toUpperCase()}
-                        </Typography>
-                    </AlbumContainer>
+                    <ListContainer backgroundImageUrl={item.image} link={'/genres/' + item.main} key={item.main}>
+                        {item.main.toUpperCase()}
+                    </ListContainer>
                 </Grid>
             ))}
             <Grid item xs={12} sx={{

@@ -15,7 +15,6 @@ const Home = () => {
     const ref = useRef(null);
 
     const scrollToTarget = () => {
-      console.log(ref);
       ref.current?.scrollIntoView({ behavior: 'smooth' });
     }
 
@@ -32,11 +31,11 @@ const Home = () => {
     `;
 
     return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: '100vw' }}>
       <LandingHero scrollToTarget={scrollToTarget}></LandingHero>
-      <Box sx={{ bgcolor: 'background.landing', color: 'primary.main', zIndex: 1, position: 'sticky' }}>
+      <Box sx={{ textAlign: 'center', width: 'inherit', bgcolor: 'background.landing', color: 'primary.main', position: 'relative', boxShadow: '-2px -2px 20px black' }}>
         <div ref={ref}>
-          <StyledArrow onClick={scrollToTarget} sx={{width: '100%', color: 'black', fontSize: 'xx-large', alignSelf: 'center', mt: 3, fontWeight: 'bold', scale: '1.5'}} />
+          <StyledArrow onClick={scrollToTarget} sx={{ mx: 0, mt: 3, color: 'black', fontSize: 'xx-large', fontWeight: 'bold', scale: '1.5'}} />
           <LandingValues />
         </div>
         <Divider variant="middle" sx={{ mx: 10, opacity: 0.3, color: 'primary.contrastText' }}>Top 5 Albums This Week</Divider>
