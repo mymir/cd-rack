@@ -1,52 +1,24 @@
-import * as React from 'react';
+import { Fragment } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Link as RouterLink } from 'react-router-dom';
 
 import { navItems } from '../nav/HeaderItems';
 import SearchBar from '../components/SearchBar';
 import HeaderMenu from './HeaderMenu';
+import SiteLogo from '../components/SiteLogo';
+import SocialLinks from '../components/SocialLinks';
+import ScrollHeader from './ScrollHeader';
 
-import GitHubIcon from '@mui/icons-material/GitHub';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
-import SiteLogo from '../components/SiteLogo';
 
-const Header = () => {
+const BasicHeader = () => {
     const location = useLocation().pathname;
 
-    const navColor = () => {
-        if (location === '/home') {
-            return 'transparent'
-        } else {
-            return 'primary'
-        }
-    }
-
-    const navPosition = () => {
-        if (location === '/home') {
-            return 'absolute'
-        } else {
-            return 'static'
-        }
-    }
-
     return (
-        <AppBar 
-            position={navPosition()}
-            component='nav'
-            color={navColor()}
-            sx={{ 
-                backgroundImage: 'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.2))',
-                boxShadow: 'none',
-                px: 10,
-                py: 0.5
-            }}
-        >
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <HeaderMenu />
@@ -88,29 +60,51 @@ const Header = () => {
                     <Box sx={{ flexGrow: 0 }}>
                         <SearchBar />
                     </Box>
-                    <IconButton 
-                        aria-label="linkedin" 
-                        color="inherit"
-                        component='a'
-                        target="_blank"
-                        href='https://www.linkedin.com/in/rafael-mymir-zingle/'
-                        sx={{ ml: 1, pr: 1 }}
-                    >
-                        <LinkedInIcon sx={{ fontSize: 'xx-large' }} />
-                    </IconButton>
-                    <IconButton 
-                        aria-label="github" 
-                        color="inherit"
-                        component='a' 
-                        href='https://github.com/mymir/cd-rack/tree/main'
-                        target="_blank"
-                        sx={{ pr: 1 }}
-                    >
-                        <GitHubIcon sx={{ fontSize: 'xx-large' }} />
-                    </IconButton>
+                    <SocialLinks margin={1} />
                 </Toolbar>
             </Container>
-        </AppBar>
+    );
+    
+  };
+
+const Header = () => {
+    const location = useLocation().pathname;
+    
+    return (
+        <Fragment>
+            {(location === '/home')
+            ?   <ScrollHeader>
+                    <AppBar 
+                        position='fixed'
+                        component='nav'
+                        color='transparent'
+                        sx={{ 
+                            backgroundImage: 'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0))',
+                            boxShadow: 'none',
+                            px: 10,
+                            py: 0.5,
+                            ':hover': {
+                                backgroundImage: 'linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0))',
+                            }
+                        }}
+                    >
+                        <BasicHeader />
+                    </AppBar>
+                </ScrollHeader>
+            :   <AppBar 
+                    position='static'
+                    component='nav'
+                    color='primary'
+                    sx={{ 
+                        backgroundImage: 'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.2))',
+                        boxShadow: 'none',
+                        px: 10,
+                        py: 0.5
+                    }}
+                >
+                    <BasicHeader />
+                </AppBar>}
+        </Fragment>
     );
     
   };

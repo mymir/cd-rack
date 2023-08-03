@@ -4,12 +4,11 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-// import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import Toolbar from '@mui/material/Toolbar';
 
 import { styled } from '@mui/material/styles';
-import LandingBackground from './LandingBackground';
+import LandingBackground from './HeroBackground';
 
 const StyledArrow = styled(ArrowDownwardIcon)`
   ${({ theme }) => `
@@ -26,46 +25,38 @@ const StyledArrow = styled(ArrowDownwardIcon)`
 const Landing = ( {scrollToTarget} ) => {
     
     return (
-    <Box sx={{ textAlign: 'center', alignContent: 'center', width: '100%' }}>
+    <Box sx={{ textAlign: 'center', alignContent: 'center', width: '100%', height: '85vh' }}>
       <LandingBackground />
-      {/* <Toolbar /> */}
       <Box
         justifyContent="center"
         sx={{ 
           display: 'flex',
+          zIndex: 0,
           flexDirection: 'column',
           alignItems: 'center',
-          position: 'static', 
+          position: 'fixed', 
           right: 0,
           left: 0, 
-          height: '80vh', 
+          height: '95vh', 
           px: '25vw'
         }}
       >
-        {/* <Typography variant='h2' sx={{ fontWeight: 'bold', textShadow: '0px 0px 20px rgba(0,0,0,.7)', lineHeight: { xs: '0.9', sm: '1.2' } }}> */}
-        <Typography variant='h2' sx={{ fontWeight: 'bold', textShadow: '0px 0px 20px rgba(0,0,0,.7)', display: { xs: 'none', sm: 'none', md: 'flex' } }}>
-          {/* Here is why you should use this site */}
-          Create your own personal music diary
-          {/* Write Reviews, Rank Albums, Show off your Collection --> grid items*/}
+        <Typography variant='h2' sx={{ zIndex: 2, fontWeight: 'bold', textShadow: '0px 0px 20px rgba(0,0,0,.7)', lineHeight: { xs: '1', sm: '1.1', md: '1.3' } }}>
+          Create your own music journal
         </Typography>
-        <Typography variant='h4' sx={{ fontWeight: 'bold', textShadow: '0px 0px 20px rgba(0,0,0,.7)', lineHeight: '1.1', display: { xs: 'flex', sm: 'flex', md: 'none' } }}>
-          {/* Here is why you should use this site */}
-          Create your own personal music diary
-          {/* Write Reviews, Rank Albums, Show off your Collection --> grid items*/}
-        </Typography>
-        <Toolbar />
+        {/* <Toolbar /> */}
         <Button 
           variant="contained" 
           size="large" 
           color="primary"
           component={RouterLink}
           to="/signup"
-          sx={{ m: 0 }}
+          sx={{ mt: 6, mb: 10, fontWeight: 'bold' }}
         >
           Get Started
         </Button>
-        <Toolbar />
-        <IconButton 
+        {/* <Toolbar /> */}
+        {/* <IconButton 
           aria-label="site-logo" 
           size="large"
           color="inherit"
@@ -73,7 +64,7 @@ const Landing = ( {scrollToTarget} ) => {
           sx={{ p: 0, transform: 'scale(1.5)' }}
         >
           <StyledArrow fontSize="inherit" />
-        </IconButton>        
+        </IconButton>         */}
       </Box>
     </Box>
     

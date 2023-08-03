@@ -7,10 +7,13 @@ import Home from './views/Home';
 import ResetPassword from './views/ResetPassword'
 import Layout from './layout/Layout';
 
+import ScrollToTop from './ScrollToTop';
+
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
